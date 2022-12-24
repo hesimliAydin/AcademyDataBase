@@ -1,0 +1,54 @@
+CREATE DATABASE AcademyDb
+GO
+USE AcademyDb
+GO
+
+CREATE TABLE Groups(
+[Id] INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+[Name] NVARCHAR(10)  NOT NULL,
+CHECK([Name]!=''),
+UNIQUE([Name]),
+[Rating] INT NOT NULL,
+CHECK([Rating]>=0 AND [Rating]<=5),
+[Year] INT NOT NULL,
+CHECK([Year]>=1 AND [Year]<=5)
+)
+
+CREATE TABLE DEPARTMENTS(
+[Id] INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+[Financing] MONEY DEFAULT(0) NOT NULL,
+CHECK([Financing]!=0),
+[Name] NVARCHAR(100) NOT NULL,
+UNIQUE([Name]),
+CHECK([Name]!='')
+)
+
+CREATE TABLE FACULTIES(
+[Id] INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+[Name] NVARCHAR(100) NOT NULL,
+CHECK([Name]!=''),
+UNIQUE([Name])
+)
+
+
+CREATE TABLE TEACHERS(
+[Id] INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+[EmploymentDate] DATE NOT NULL,
+--SELECT cast(NULLIF(a.[PAYOFF DATE],'') AS DATE) 
+--FROM MTG a 
+[Name] NVARCHAR(MAX) NOT NULL,
+CHECK([Name]!=''),
+[Premium] MONEY DEFAULT(0) NOT NULL,
+CHECK([Premium]!=0),
+[Salary] MONEY NOT NULL,
+CHECK([Salary]!=0 AND [Salary]>0),
+[Surname] NVARCHAR(MAX) NOT NULL,
+CHECK([Surname]!='')
+)
+
+
+
+
+
+
+
